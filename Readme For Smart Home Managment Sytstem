@@ -1,0 +1,103 @@
+Overview
+
+This project is a console-based Smart Home Management System implemented in Java using core Object-Oriented Programming (OOP) principles.
+It simulates a real smart home where rooms contain multiple devices that can be turned on or off individually or all at once.
+
+The system demonstrates how objects interact inside a real-world model using classes such as Device, Room, and Home.
+
+Features
+
+Add multiple rooms to a home
+
+Add multiple devices to each room
+
+Turn all devices on in a room
+
+Turn all devices off in a room
+
+Display detailed information about all rooms and devices
+
+Perform home-level operations:
+
+Activate the entire home (turn on all devices)
+
+Shut down the entire home (turn off all devices)
+
+OOP Concepts Used
+Encapsulation
+
+Each device has its own internal state (name, type, and on/off status) and exposes actions through methods.
+
+Abstraction
+
+Users interact with high-level methods such as:
+
+turnAllDevicesOn()
+
+turnAllDevicesOff()
+
+showAllRoomsAndDevices()
+
+Static Members
+
+The Room.roomcount static variable tracks the total number of rooms created.
+
+Object Interaction
+
+A Home object contains multiple Room objects.
+
+A Room object contains multiple Device objects.
+
+Project Structure
+SmartHomeApp.java
+│
+├── class Device
+├── class Room
+├── class Home
+└── public class SmartHomeApp (main method)
+
+How It Works
+1. Create a Home
+Home h1 = new Home("Areeb's Smart Home", 2);
+
+2. Create Rooms
+Room r1 = new Room("Living Room", 4);
+Room r2 = new Room("Bedroom", 4);
+
+3. Add Rooms to Home
+h1.addRoom(r1);
+h1.addRoom(r2);
+
+4. Create and Add Devices
+Device d1 = new Device("Led bulb","Haier");
+r1.addDevice(d1);
+
+5. Display All Rooms and Devices
+h1.showAllRoomsAndDevices();
+
+6. Turn All Devices On or Off
+h1.activateHome();     // Turns all devices on
+h1.shutdownHome();     // Turns all devices off
+
+How to Run
+
+Copy all classes into a file named SmartHomeApp.java.
+
+Compile the program:
+
+javac SmartHomeApp.java
+
+
+Run the program:
+
+java SmartHomeApp
+
+Possible Future Improvements
+
+Add separate subclasses for device types (Light, Fan, AC, etc.)
+
+Add a user menu for interactive control
+
+Save device states using file handling
+
+Implement automation or scheduling features
