@@ -1,0 +1,148 @@
+class Device {
+	String deviceName;
+	String deviceType;
+	boolean isOn;
+	public Device(String n,String d ) {
+		deviceName = n;
+		deviceType = d;
+		this.isOn = false;
+	}
+	public void turnOn() {
+		if(!isOn) {
+			isOn = true;
+			System.out.println(deviceName + " is turned on.");
+		}
+	}
+	public void turnOff() {
+		if(isOn) {
+			isOn = false;
+			System.out.println(deviceName + " is turned off.");
+		}
+	}
+	public void Displaystatus() {
+		System.out.println();
+		System.out.println("----Details of the device is ----");
+		System.out.println("Device Name : " + deviceName );
+		System.out.println("Device Type : " +  deviceType );
+		System.out.println("Device is currently " + (isOn ? "On" : "Off"));
+		System.out.println();
+	}
+}
+class Room{
+    String roomName;
+    Device[] devices;
+    int deviceCount;
+    static int roomcount;
+Room(String r , int devicenum ){
+    roomName = r;
+    devices = new Device[devicenum];
+    deviceCount = 0;
+    roomcount++;
+} 
+    
+public void addDevice(Device d){
+    if(deviceCount < devices.length){
+      devices[deviceCount] = d;
+       deviceCount++; 
+    }else {
+            System.out.println("No space to add more books.");
+        }
+   
+}
+public void turnAllDevicesOn(){
+     System.out.println("------Now All Devices Are on --------");
+    for(Device b : devices){
+        b.turnOn();  
+    }
+}
+public void turnAllDevicesOff(){
+    System.out.println("------Now All Devices Are off --------");
+    for(Device b : devices){
+        b.turnOff();  
+    }
+}
+public void ShowAllDevices(){
+     System.out.println("------All present Devices in the room --------");
+     for(Device b : devices){
+        b.Displaystatus();  
+    }
+} 
+}
+class Home {
+	String ownerName;
+	Room[] rooms;
+	int roomCount;
+	Home(String n, int roomno) {
+		ownerName = n;
+		rooms = new Room[roomno];
+		this.roomCount = 0;
+	}
+	public void addRoom(Room r) {
+		if(roomCount < rooms.length) {
+			rooms[roomCount] = r;
+				roomCount++;
+		} else {
+			System.out.println("No space for room.");
+		}
+	
+	}
+	public void showAllRoomsAndDevices() {
+		System.out.println("----------Details of all Rooms in the house :---------");
+		for(Room r : rooms) {
+			System.out.println("                   *** " + r.roomName +" *** " );
+			r.ShowAllDevices();
+		}
+	}
+	public void activateHome() {
+		for(Room a : rooms) {
+			System.out.println("                   *** " + a.roomName +" *** " );
+			System.out.println("---------Current Status of devices of room---------");
+			a.turnAllDevicesOn();
+		}
+	}
+	public void shutdownHome() {
+		for(Room b  : rooms) {
+			System.out.println("                   *** " + b.roomName +" *** " );
+			System.out.println("---------Current Status of devices of room---------");
+			b.turnAllDevicesOff();
+		}
+	}
+}
+public class SmartHomeApp{
+    public static void main(String[]args){
+    Home h1 = new Home("Areeb's Smart Home" , 2);
+    Room r1 = new Room("Living Room", 4);
+    Room r2 = new Room("Bedroom" , 4);
+    h1.addRoom(r1);
+    h1.addRoom(r2);
+    Device d1 = new Device("Led bulb","Haier");
+    Device d2 = new Device("Ceiling lights","SAmsung");
+    Device d3 = new Device("Fan","Panasonic");
+    Device d4 = new Device("Air COnditioner","Sony");
+    r1.addDevice(d1);
+    r1.addDevice(d2);
+    r1.addDevice(d3);
+    r1.addDevice(d4);
+    Device d5 = new Device("Tube light","Haier");
+    Device d6 = new Device("Switch board","SAmsung");
+    Device d7 = new Device("Fairy lights","Panasonic");
+    Device d8 = new Device("Laptop","Sony");
+    r2.addDevice(d5);
+    r2.addDevice(d6);
+    r2.addDevice(d7);
+    r2.addDevice(d8);
+    System.out.println("---_-_-_-_--- Welcome to Smart Home Managment System ---_-_-_-_---");
+     System.out.println();
+    System.out.println("*********** There are " + Room.roomcount + " rooms in this house ************");
+    System.out.println();
+    h1.showAllRoomsAndDevices(); 
+    System.out.println();
+    System.out.println("**** Updated Status after turning devices on ****");
+    System.out.println();
+    h1.activateHome();
+    System.out.println();
+     System.out.println("**** Updated Status after turning devices off ****");
+     System.out.println();
+    h1.shutdownHome();
+    }   
+}
