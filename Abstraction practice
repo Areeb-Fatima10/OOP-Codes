@@ -21,7 +21,8 @@ public class Main{
         Animal d = new Dog();
         Animal c = new Cat();
         d.sound();
+        d.sleep();
         c.sound();
-        
+        c.sleep();
     }
 }
